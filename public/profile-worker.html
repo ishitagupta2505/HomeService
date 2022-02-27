@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Profile User</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/profile.css">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row my-4 p-3">
+                <div class="col-4" id="head">
+                    <h4>User Profile</h4>
+                </div>
+                <div class="col-8">
+                    <a href="dash-worker.html" class="btn">Dashboard</a>
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#settingModal">
+                        Change Password
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form method="post" id="frm" name="frm" enctype="multipart/form-data">
+                        <div class="container">
+                            <div class="row">
+                                <input type="hidden" name="hiddenPic" id="hiddenPic"> <!-- for storing previous image before updating -->
+                                <input type="hidden" name="hiddenProof" id="hiddenProof">
+                                <div class="col-md-5 mb-3">
+                                    <label for="txtEmail" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" readonly name="email" id="txtEmail" placeholder="example@gmail.com">
+                                    <span id="errEmail"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="txtName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="name" id="txtName">
+                                    <span id="errName"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="txtContact" class="form-label">Contact</label>
+                                    <input type="text" class="form-control" name="contact" id="txtContact">
+                                    <span id="errContact"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="txtAddress" class="form-label">Address</label>
+                                    <input type="text" class="form-control" name="address" id="txtAddress">
+                                    <span id="errAddress"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="txtCity" class="form-label">City</label>
+                                    <select class="form-select" aria-label="Default select example" name="city" id="txtCity">
+                                        <!-- <option selected disabled>Select city</option> -->
+                                        <option value="bathinda">Bathinda</option>
+                                        <option value="patiala">Patiala</option>
+                                        <option value="ludhiana">Ludhiana</option>
+                                    </select>
+                                    <span id="errCity"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="txtState" class="form-label">State</label>
+                                    <select class="form-select" aria-label="Default select example" name="state" id="txtState">
+                                        <option value="punjab">Punjab</option>
+                                        <option value="up">U.P.</option>
+                                        <option value="rajasthan">Rajasthan</option>
+                                    </select>
+                                    <span id="errState"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="txtCategory" class="form-label">Category</label>
+                                        <select class="form-select" name="category" id="txtCategory">
+                                            <option value="plumber">Plumber</option>
+                                            <option value="electrician">Electrician</option>
+                                            <option value="carpenter">Carpenter</option>
+                                        </select>
+                                        <span id="errCategory"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="txtExperience" class="form-label">Experience</label>
+                                        <select class="form-select" name="experience" id="txtExperience">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <span id="errExperience"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Write your work done" id="txtWork" name="workdone" id="txtWork"></textarea>
+                                        <label for="txtWork">Work Experience</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <img src="uploads/no_user.png" id="imgPic" height="100">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="txtPic" class="form-label">Profile Pic</label>
+                                        <input type="file" class="form-control" name="profilePic" id="txtPic" onchange="showPic(this,imgPic);">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-6 mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <img src="uploads/no_user.png" id="imgProof" height="100">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="txtProof" class="form-label">ID Proof</label>
+                                        <input type="file" class="form-control" name="proofPic" id="txtProof" onchange="showPic(this,imgProof);">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="button" value="Update" class="btn" id="btnUpdate">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Setting Modal -->
+        <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="settingModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="settingModalLabel">Settings</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form method="post">
+                    <div class="mb-3">
+                      <label for="txtEmailSetting" class="form-label">Email address</label>
+                      <input type="email" class="form-control" readonly id="txtEmailSetting" name="email">
+                    </div>
+                    <div class="mb-3">
+                      <label for="txtPassword" class="form-label">Existing Password</label>
+                      <input type="password" class="form-control" id="txtPassword" name="password">
+                      <span id="errPassword"></span>
+                    </div>
+                    <div class="mb-3">
+                      <label for="txtNewPassword" class="form-label">New Password</label>
+                      <input type="password" class="form-control" id="txtNewPassword" name="newPassword">
+                      <span id="errNewPassword"></span>
+                    </div>
+                    <input type="button" class="btn" value="Change Password" id="btnChange">
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <span id="result"></span>
+                </div>
+              </div>
+            </div>
+        </div>
+    
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery-1.8.2.min.js"></script>
+        <script src="js/profile-worker-valid.js"></script>
+    </body>
+</html>

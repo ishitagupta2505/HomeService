@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#btnFetch{
+    background-color: hsl(175, 66%, 38%);
+    color: white;
+    border-width: 0;
+    padding: 2% 3%;
+    border-radius: 5px;
+}
+
+#btnFetch:hover{
+    color: hsl(175, 66%, 38%);
+    background-color: white;
+    border: 1px solid hsl(175, 66%, 38%);
+}
+
+#cardRow{
+    justify-content: space-around;
+}
+
+#imgProfile{
+    width: 50%;
+    height: 40%;
+}
+
+#btnDetail{
+    color: hsl(175, 66%, 38%);
+    border: 1px solid hsl(175, 66%, 38%);
+}
+
+#btnDetail:hover{
+    background-color: hsl(175, 66%, 38%);
+    color: white;
+}
+
+#exampleModalLabel{
+    color: hsl(175, 66%, 38%);
+}

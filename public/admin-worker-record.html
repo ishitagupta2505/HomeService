@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Worker Records</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body ng-app="ModuleCreated" ng-controller="ControllerCreated" ng-init="fetchCity();">
+
+        <div class="container">
+            <div class="row">
+                <h3 class="text-center my-5">Worker Records</h3>
+            </div>
+            <form method="post">
+                <div class="row my-4">
+                    <div class="col-1">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="col-3 mb-4">
+                        <select id="city" ng-model="selCity">
+                            <option ng-repeat="i in cityJSON" value={{i.city}}>{{i.city}}</option>
+                        </select>
+                    </div>
+                    <div class="col mb-4">
+                        <input type="button" value="Fetch Record" ng-click="fetchCityRecord();">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <table class="table" width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Experience</th>
+                                <th>Work Done</th>
+                                <th>Profile Pic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="i in cityRecords">
+                                <td>{{$index+1}}</td>
+                                <td>{{i.name}}</td>
+                                <td>{{i.email}}</td>
+                                <td>{{i.contact}}</td>
+                                <td>{{i.address}}</td>
+                                <td>{{i.city}}</td>
+                                <td>{{i.state}}</td>
+                                <td>{{i.experience}}</td>
+                                <td>{{i.workdone}}</td>
+                                <td class="text-center" width="10%"><img src="uploads/{{i.profilepic}}" class="rounded-circle" width="100%"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script>
+            var myModule = angular.module("ModuleCreated", []);
+            var myController = myModule.controller("ControllerCreated", function($scope,$http){
+
+                $scope.selCity;
+                $scope.cityJSON;
+                $scope.fetchCity = function(){
+                    var urlCity = "/fetchCityWorker";
+                    $http.get(urlCity).then(getResult, getError);
+                    function getResult(jsonResp){
+                        $scope.cityJSON = jsonResp.data;
+                        $scope.selCity = $scope.cityJSON[0].city;
+                    }
+                    function getError(jsonResp){
+                        alert(jsonResp.data);
+                    }
+                }
+
+                $scope.cityRecords;
+                $scope.fetchCityRecord = function(){
+                    var url = "/fetchCityRecordWorker?city=" + $scope.selCity;
+                    $http.get(url).then(getResult, getError);
+                    function getResult(jsonResp){
+                        $scope.cityRecords = jsonResp.data;
+                    }
+                    function getError(jsonResp){
+                        alert(jsonResp.data);
+                    }
+                }
+
+            })
+        </script>
+    </body>
+</html>

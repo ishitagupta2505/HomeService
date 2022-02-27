@@ -1,0 +1,52 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+nav #headNav{
+    color:#219F94;
+}
+
+#profile:hover, #btnLogout:hover{
+    color: white;
+}
+
+#card{
+    width: 70%;
+    height: 100%;
+    padding: 8% 1%;
+    align-items: center;
+    margin: auto;
+    box-shadow: 3px 6px 8px #d3d1d1;
+}
+#card #image{
+    height: 100%;
+    width: 100%;
+}
+#card a{
+    color: #219F94;
+    border: 1px solid #219F94;
+}
+#card a:hover{
+    background-color: #219F94;
+    color: white;
+}
+
+@media screen and (max-width: 991px) {
+    #profile{
+        display: inline;
+        border-width: 0;
+    }
+    #profile:hover{
+        background-color: white;
+        color: #219F94;
+    }
+    #btnLogout{
+        border-width: 0;
+    }
+    #btnLogout:hover{
+        background-color: white;
+        color: #219F94;
+    }
+}
