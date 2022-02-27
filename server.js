@@ -25,7 +25,7 @@ dbConnection.connect(function(err){
     }
 })
 
-app.listen(1003,function(){
+app.listen(process.env.PORT || 1003,function(){
     console.log("server started");
 });
 
